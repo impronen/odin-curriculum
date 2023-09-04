@@ -25,7 +25,7 @@ We have just discussed one of the most important principles in an earlier lesson
 
 A function that does one thing will be easier to read than one that does many things. This will not only make your code more readable but it will make it easier to refactor. Let's look at an example:
 
-~~~javascript
+```javascript
 function processUserData(user) {
   if (!user || !user.name || !user.email) {
     throw new Error("User data is incomplete");
@@ -34,22 +34,22 @@ function processUserData(user) {
   emailService.sendWelcomeEmail(user.email);
   logger.logActivity("User registration", user.name, new Date());
 }
-~~~
+```
 
-Whoa, that function does _a lot_. If we break it down, the parts are:
+This function is trying to do way too much. If we break it down, it undertakes the following tasks:
 
-1.  We validate user data
-2.  Then save user data to the database
-3.  Then we send a welcome email to the user
-4.  Finally we log the user activity
+1. Validates user data.
+2. Saves user data to the database.
+3. Sends a welcome email to the user.
+4. Logs user activity.
 
-Our poor function is responsible for all kinds of things. The code as such isn't hard to read but violating SRP can make life difficult, when fixing bugs down the line.
+Our poor function is burdened with all kinds of responsibilities. While the code isn't hard to read, violating SRP can make life difficult when fixing bugs down the line.
 
 Let's imagine that there will be a bug in step two, where the user data is added to a database. Will your first instinct to be to look at the function named `processUserData`? Probably not, it's not referring to saving the user to the database but as our function has so many responsibilities, it might be where the problem lies.
 
-So how would we bend this function to respect the SRP? By dividing it to smaller functions, like this:
+So how would we align this function to respect the SRP? By dividing it to smaller functions, like this:
 
-~~~javascript
+```javascript
 function validateUserData(user) {
   if (!user || !user.name || !user.email) {
     throw new Error("User data is incomplete");
@@ -67,23 +67,87 @@ function sendWelcomeEmailToUser(email) {
 function logUserRegistration(name) {
   logger.logActivity("User registration", name, new Date());
 }
-~~~
+```
 
 And finally we can wrap it up by calling these smaller functions in one place, where the magic really happens:
 
-~~~javascript
+```javascript
 function addUser(userData) {
   validateUserData(userData);
   const savedUser = saveUserToDatabase(userData);
   sendWelcomeEmailToUser(userData.email);
   logUserRegistration(savedUser.name);
 }
-~~~
+```
 
-Now we can safely do changes to each of the bits needed for the process of adding a user. Many of these functions could also come in handy in other parts of the application, if needed. Convenient, modular and reusable.
+Now we can safely do changes to each of the steps needed for the process of adding a user. Many of these functions could also come in handy in other parts of the application, if needed. Any errors encountered will specifically pinpoint the related function. Convenient, modular and reusable.
 
-<!-- NEXT WORK ON  -->
+<!-- NEXT WORK ON FUNCTION ARGUMENTS -->
 
+#### Limit the number of arguments passed to a function
+
+Passing arguments to a function is the bread and butter of programming. At the start, you probably had pretty simple stuff to pass in - you might have had something like this in your calculator:
+
+```javascript
+function operate(operator, x, y) {
+  // Perhaps a switch statement that executes operations
+}
+```
+
+There's no problem here, this code is easy to read and maintain - just a few self-evident arguments. But let's move onto Todo, where something like this might happen:
+
+```javascript
+function renderTask(task, project, dueDate, priority, completion, info) {
+  // Code that creates the task in the DOM
+}
+
+renderTask(
+  "Do Groceries",
+  "Chores",
+  "11-10-2023",
+  "high",
+  false,
+  "You don't really need additional info for this do you?"
+);
+```
+
+There's few ways to make this a bit more comfortable. One is to assing the task as an object variable, like this:
+
+```javascript
+function renderTask(taskObject) {
+  const taskName = document.createElement("div");
+  taskName.innerText = taskObject.name;
+  parentContainer.appendChild(taskName);
+  //more stuff that uses the other values from the object
+}
+```
+
+Here we are only passing in the object and it's values or methods are accessed with dot notation. It looks a lot cleaner but there is a caveat - the reader has to look elsewhere to get a feel of what does `taskObject` contain. Depending on the codebase, this can be a long search.
+
+One possibility to add clarity is to rely on ES6 destructuring syntax:
+
+```javascript
+function renderTask({
+  task,
+  project,
+  dueDate,
+  priority,
+  completion = false,
+  info,
+}) {
+  // Code that creates the task in the DOM
+}
+
+renderTask({
+  task: "Do Groceries",
+  project: "Chores",
+  dueDate: "11-10-2023",
+  priority: "high",
+  info: "You don't really need additional info for this do you?",
+});
+```
+
+There's defineatly added clarity here, isn't there? The example also shows how using default values can save time when assigned to some properties.
 
 ### Assignment
 
