@@ -115,17 +115,13 @@ Hopefully, this gives you a glimpse into the power the `@keyframes` syntax provi
 ### Assignment
 
 <div class="lesson-content__panel" markdown="1">
-1. Code along with the the MDN article for [using CSS animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations).
+1. Code along with [this MDN article for using CSS animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations).
 2. Read the [@keyframes reference](https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes) to gain a deeper understanding of how keyframes are implemented.
+3. Now let's make some cool animations! Go to the [CSS exercises repository](https://github.com/TheOdinProject/css-exercises) and do the exercises in the 'animation' folder in this order:
+   1. button-hover
+   2. pop-up
+   3. dropdown-menu
 </div>
-
-### Practice
-
-Now let's make some cool animations! Go to the [CSS exercises repository](https://github.com/TheOdinProject/css-exercises) and do the exercises in the 'animation' folder in this order:
-
-1. button-hover
-2. pop-up
-3. dropdown-menu
 
 ### Knowledge check
 This section contains questions for you to check your understanding of this lesson. If you’re having trouble answering the questions below on your own, review the material above to find the answer.
@@ -136,4 +132,4 @@ This section contains questions for you to check your understanding of this less
 
 ### Additional resources
 
-This section contains helpful links to other content. It isn't required, so consider it supplemental if you need to dive deeper into something.
+[Video from DevTips on CSS Animations and Keyframes](https://www.youtube.com/watch?v=f1WMjDx4snI&list=PLqGj3iMvMa4LvJ8VctoXnPI0dtE40wfid&index=2&ab_channel=DevTips).

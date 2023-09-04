@@ -30,7 +30,7 @@ Now that we have everything we need, let's briefly go over what some of those pa
 
   <div class="lesson-note" markdown="1">
 
-  `fireEvent` is an inferior counterpart to `userEvent` and `userEvent` should always be preferred in practice._
+  `fireEvent` is an inferior counterpart to `userEvent` and `userEvent` should always be preferred in practice.
 
   </div>
 
@@ -41,8 +41,6 @@ First, we'll render the component using `render`. The API will return an object 
 ~~~javascript
 // App.jsx
 
-import React from "react";
-
 const App = () => <h1>Our First Test</h1>;
 
 export default App;
@@ -51,7 +49,6 @@ export default App;
 ~~~javascript
 // App.test.jsx
 
-import React from "react";
 import { render, screen } from "@testing-library/react";
 import App from "./App";
 
@@ -64,16 +61,16 @@ describe("App component", () => {
 
 ~~~
 
-Execute `npm test App.test.js` on the terminal and you'll see that test pass. `getByRole` is just one of the dozen query methods that we could've used. Essentially, queries are classified into three types: `getBy`, `queryBy` and `findBy`. Go through [the React Testing Library docs page about queries](https://testing-library.com/docs/queries/about/). Pay extra attention to the "Types of Queries" and "Priority" section. 
+Execute `npm test App.test.jsx` on the terminal and see the test pass. `getByRole` is just one of the dozen query methods that we could've used. Essentially, queries are classified into three types: `getBy`, `queryBy` and `findBy`. Go through [the React Testing Library docs page about queries](https://testing-library.com/docs/queries/about/). Pay extra attention to the "Types of Queries" and "Priority" sections. 
 
-<span id="by-role-methods">As stated by the React Testing Library docs, `ByRole` methods are the favored methods for querying, especially when paired with the `name` option. For example, we could improve the specificity of the above query like so: `getByRole("heading", { name: "Our First Test" })`. Queries that are done through `ByRole` ensure that our UI is accessible to everyone no matter what mode they use to navigate the webpage (i.e mouse or assistive technologies).</span>
+<span id="by-role-methods">As stated by the React Testing Library docs, `ByRole` methods are favored methods for querying, especially when paired with the `name` option. For example, we could improve the specificity of the above query like so: `getByRole("heading", { name: "Our First Test" })`. Queries that are done through `ByRole` ensure that our UI is accessible to everyone no matter what mode they use to navigate the webpage (i.e. mouse or assistive technologies).</span>
 
 ### Simulating user events
 
 There are numerous ways a user can interact with a webpage. Even though live user feedback and interaction is irreplaceable, we can still build some confidence in our components through tests. Here's a button which changes the heading of the App:
 
 ~~~javascript
-// App.js
+// App.jsx
 
 import React, { useState } from "react";
 
@@ -102,14 +99,13 @@ Let's test if the button works as intended. In this test suite, we'll use a sepa
 ~~~javascript
 // App.test.js
 
-import React from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import App from "./App";
 
 describe("App component", () => {
   it("renders magnificent monkeys", () => {
-    // since screen does not have the container property, we'll destructure render to obtain container for this test
+    // since screen does not have the container property, we'll destructure render to obtain a container for this test
     const { container } = render(<App />);
     expect(container).toMatchSnapshot();
   });
@@ -129,7 +125,7 @@ describe("App component", () => {
 
 The tests speak for themselves. In the first test, we utilize snapshots to check whether all the nodes render as we expect them to. In the second test, we simulate a click event. Then we check if the heading changed. `toMatch` is one of the various assertions we could have made. 
 
-It's also important to note that after every test, React Testing Library unmounts the rendered components. That's why we render for each test. For a lot of tests for a component, the `beforeEach` jest function could prove handy.
+It's also important to note that after every test, React Testing Library unmounts the rendered components. That's why we render for each test. For a lot of tests for a component, the `beforeEach` Jest function could prove handy.
 
 Notice that the callback function for the second test is asynchronous. This is because `user.click()` simulates the asynchronous nature of user interaction, which is now supported by the latest version of the testing library's user-event APIs. 
 As of [version 14.0.0](https://github.com/testing-library/user-event/releases/tag/v14.0.0), the user-event APIs have been updated to be asynchronous. It's worth noting that some examples from other resources or tutorials might still use the synchronous `userEvent.click()` method
@@ -187,11 +183,11 @@ The other issue with snapshots is false negatives. Even the most insignificant o
 
 2. Read [the userEvent API docs](https://testing-library.com/docs/user-event/intro) to get a feel of how to achieve user simulation. 
 
-3. This article on the [Pros and Cons of Snapshot Tests](https://tsh.io/blog/pros-and-cons-of-jest-snapshot-tests/) goes in depth regarding the advantages and disadvantages of snapshot testing. Even though the articles uses Jest, the concepts should be transferrable. And this one, [Snapshot Testing: Benefits and Drawbacks](https://www.sitepen.com/blog/snapshot-testing-benefits-and-drawbacks), does an excellent job of explaining what snapshot testing is for programming in general.
+3. This article on the [Pros and Cons of Snapshot Tests](https://tsh.io/blog/pros-and-cons-of-jest-snapshot-tests/) goes in depth regarding the advantages and disadvantages of snapshot testing. Even though the articles use Jest, the concepts should be transferrable. And this one, [Snapshot Testing: Benefits and Drawbacks](https://www.sitepen.com/blog/snapshot-testing-benefits-and-drawbacks), does an excellent job of explaining what snapshot testing is for programming in general.
 
 </div>
 
-### Knowledge Check 
+### Knowledge check 
 
 This section contains questions for you to check your understanding of this lesson on your own. If you’re having trouble answering a question, click it and review the material it links to.
 
@@ -203,7 +199,7 @@ This section contains questions for you to check your understanding of this less
 * [What is the advantage of snapshot tests?](#advantage-snapshot-tests)
 * [What are the disadvantages of snapshot tests?](#disadvantage-snapshot-tests)
 
-### Additional Resources
+### Additional resources
 
 This section contains helpful links to other content. It isn't required, so consider it supplemental.
 
