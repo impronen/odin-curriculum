@@ -46,6 +46,12 @@ Be sure to do the lessons in the order presented here. Pressing "run" at the top
 To get started, create a free replit account and click "Fork" or "Remix" to access the exercises.
 Note: Feel free to browse the files on the left column to gain familiarity with it.
 
+<div class="lesson-note lesson-note--warning">
+<h4>Replit and AI</h4>
+
+Replit recently introduced an AI assistant, which is on by default. Before trying any of the exercises, you should first disable it, in order to prevent it from spoiling the exercise. You can do so by clicking on the button labeled AI in the bottom left corner of the code view and then unchecking the "Enable" checkbox.
+</div>
+
 - [Exercise 1](https://replit.com/@OdinProject/troubleshooting#troubleshooting.js)
   - In this exercise, you will be working out of the file called troubleshooting.js
 - [Exercise 2](https://replit.com/@OdinProject/enter-a-number#script.js)
@@ -84,6 +90,6 @@ This section contains questions for you to check your understanding of this less
 
 This section contains helpful links to other content. It isn't required, so consider it supplemental.
 
-- Regular expressions, commonly known as regex, are a tool that matches or locates patterns in strings for string validation. Although it shouldn't be your immediate solution this early on, you can still use this resource to understand how websites know that `myemail@com` isn't a valid email address. On top of that, other solutions to filter out strings exist, and regex is considered a slow operation.
-- [The Net Ninja's Regular Expressions Tutorial](https://www.youtube.com/playlist?list=PL4cUxeGkcC9g6m_6Sld9Q4jzqdqHd2HiD).
-- [When to avoid regular expressions](https://softwareengineering.stackexchange.com/questions/113237/when-you-should-not-use-regular-expressions).
+- [Regular expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions), commonly known as regex, is a tool that matches or locates patterns in strings for string validation. However, it's important to know [when you shouldn't use regular expressions](https://softwareengineering.stackexchange.com/questions/113237/when-you-should-not-use-regular-expressions). There are other various methods to process strings, and regex can be slower in comparison.
+  - [Web Dev Simplified's Regular Expressions In 20 Minutes](https://www.youtube.com/watch?v=rhzKDrUiJVk)
+

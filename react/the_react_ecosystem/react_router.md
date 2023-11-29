@@ -98,7 +98,7 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/profile",
+    path: "profile",
     element: <Profile />,
   },
 ]);
@@ -236,7 +236,7 @@ Check out the `/profile`, `/profile/popeye` and `/profile/spinach` pages. The `<
 
 If you want to render something as a default component when no path is added to Profile, you can add an index route to the children! 
 
-Create a default Profile component:
+Create a DefaultProfile component:
 
 ~~~jsx
 const DefaultProfile = () => {
@@ -477,4 +477,4 @@ This section contains helpful links to related content. It isn’t required, so 
 
 - Among the many ways to make protected routes, a few ways are provided below:
     - [This Stack Overflow answer](https://stackoverflow.com/a/64347082/19051112) uses a function to generate the route config object passed to `createBrowserRouter`. The function conditionally generates the different paths.
-    - [This demonstration project](https://github.com/iammanishshrma/react-protected-routes/tree/master/src/components) creates a special Protected Route component that conditionally displays elements as necessary.
+    - [This demonstration project](https://github.com/iammanishshrma/react-protected-routes/blob/master/src/routes/ProtectedRoute.jsx) creates a special Protected Route component that conditionally displays elements as necessary.

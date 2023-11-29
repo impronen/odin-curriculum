@@ -58,7 +58,9 @@ Combined with CSS variables, `calc()` can save us from the headache of repeating
 
 You should be able to grasp how `calc()` is used in the above CodePen embed. We encourage you to play around with different units and sizes of the elements to see what results you get before moving on.
 
-**Note:** The above is just an example of how `calc()` can affect a layout, but keep in mind that `calc()` is likely not the best way to go about it. We will talk more about layouts in future lessons.
+<div class="lesson-note lesson-note--tip" markdown=1>
+The above is just an example of how `calc()` can affect a layout, but keep in mind that `calc()` is likely not the best way to go about it. We will talk more about layouts in future lessons.
+</div>
 
 #### min()
 
@@ -135,6 +137,7 @@ The `clamp()` CSS function uses these values to set the smallest value, ideal va
 
 This section contains helpful links to other content. It isn’t required, so consider it supplemental.
 
-- [This video](https://www.youtube.com/watch?v=6QwMvf1Jq0M) by Steve Young gives a good visual overview of these functions.
+- [This video](https://www.youtube.com/watch?v=6QwMvf1Jq0M) by Steve Griffith gives a good visual overview of these functions.
 - [This article](https://moderncss.dev/practical-uses-of-css-math-functions-calc-clamp-min-max/) contains some specific use cases for all four functions, including color palette generation, background size responsiveness, and accessibility settings.
+- [This article](https://ishadeed.com/article/css-min-max-clamp/), by Ahmad Shadeed gives a detailed explanation, and contains real world use cases.
 

@@ -121,7 +121,8 @@ Whatever your circumstances, we've got you covered. Here are the PaaS providers 
 
 **Free plan**
 
-- You get 500 free, one-time-use hours on their free plan, and the applications are never put to sleep when inactive. With this in mind, the free allowance is only enough to host one app for 20 days, and thus isn't recommended.
+- You get a free one-time grant of 5$ on their free trial, and the applications are never put to sleep when inactive.
+- However, the longevity of your free allowance depends on how many resources you consume. Full usage of the resources available is only enough to host one app for about 30 days, and thus isn't recommended.
 
 **Links**
 
@@ -216,12 +217,10 @@ This will be where the Git skills you've been learning will start to really pay 
 
 <div class="lesson-content__panel" markdown="1">
 
-1. Deploy your [Mini Message Board project](https://www.theodinproject.com/lessons/nodejs-mini-message-board) to one of the hosting providers we've mentioned. If you need help deciding which one to use, we recommend Fly.io in conjunction with MongoDB Atlas for your database. The important thing to take away from this first deployment is getting experience deploying. Don't worry if you don't understand everything that's happening. That will come with time.
+1. Deploy your [Mini Message Board project](https://www.theodinproject.com/lessons/nodejs-mini-message-board) to one of the hosting providers we've mentioned. If you need help deciding which one to use, we recommend Fly.io. The important thing to take away from this first deployment is getting experience deploying. Don't worry if you don't understand everything that's happening. That will come with time.
    - Use one of the linked deploy guides for your PaaS provider to help you through the process.
    - If you're having trouble deploying, check out the [Debugging and Troubleshooting Deployments](#debugging-and-troubleshooting-deployments) section for some tips.
    - If for some reason the deployment is still too difficult, and you just can't seem to get it to work, move onto the next project and come back once you've deployed your MDN project. The steps in their tutorial hold your hand a bit more through the process and will give you the confidence you need to deploy this project.
-1. Once you've hosted your app and fired up your database, you'll need to provide the Express app with a MongoDB connection URL that points to the database. If you're planning to publish your code on GitHub you will need to hide this URL for your database from prying eyes because it contains both your username and password. The simplest approach is to push your code to a private repository, however, if you want to show-off your code to the world, assign the connection URL to an environment variable and access it with the help of the [Dotenv](https://github.com/motdotla/dotenv) package. This [Medium article](https://medium.com/@thejasonfile/using-dotenv-package-to-create-environment-variables-33da4ac4ea8f) does a great job of explaining what they are, and how to use them with Express.
-   - If you do decide to use Dotenv for this project, you'll have to research how to import environment variables to the PaaS you choose to use or else your deployment will fail.  For instance, when using Fly.io, you need to run `fly secrets import < .env` from the command line.
 
 </div>
 
