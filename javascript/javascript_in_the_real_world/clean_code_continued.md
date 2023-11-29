@@ -1,8 +1,8 @@
 ### Introduction
 
-We touched on the basics of what it means to write clean code all the way back in [Foundations](https://www.theodinproject.com/lessons/foundations-clean-code). In that lesson, we discussed how you might get lost in your own code. It might have felt like a silly notion at the time, but probably by now, you've already had experience with that. Same thing has probably happened with a lot of things we covered back then, wether you remember them or not.
+We touched on the basics of what it means to write clean code all the way back in [Foundations](https://www.theodinproject.com/lessons/foundations-clean-code). In that lesson, we discussed how you might get lost in your own code. It might have felt like a silly notion at the time, but probably by now, you've probably already had experience with that.
 
-This lesson is an invitation to take a glance back at that earlier lesson for reminders and an opportunity to learn some cool new tricks that can make your code cleaner and just _better_.
+This lesson is an opportunity to learn some cool new tricks that can make your code cleaner and just _better_.
 
 Sound good? Let's go!
 
@@ -36,7 +36,7 @@ function processUserData(user) {
 }
 ```
 
-This function is trying to do way too much. If we break it down, it undertakes the following tasks:
+This function is doing some heavy lifting. If we break it down, it undertakes the following tasks:
 
 1. Validates user data.
 2. Saves user data to the database.
@@ -47,7 +47,7 @@ Our poor function is burdened with all kinds of responsibilities. While the code
 
 Let's imagine that there will be a bug in step two, where the user data is added to a database. Will your first instinct to be to look at the function named `processUserData`? Probably not, it's not referring to saving the user to the database but as our function has so many responsibilities, it might be where the problem lies.
 
-So how would we align this function to respect the SRP? By dividing it to smaller functions, like this:
+So how would we align this function to respect the SRP? By dividing it to smaller functions, something like this:
 
 ```javascript
 function validateUserData(user) {
@@ -89,12 +89,14 @@ Now we can safely do changes to each of the steps needed for the process of addi
 Passing arguments to a function is the bread and butter of programming. At the start, you probably had pretty simple stuff to pass in - you might have had something like this in your calculator:
 
 ```javascript
-function operate(operator, x, y) {
+function operate(operator, num1, num2) {
   // Perhaps a switch statement that executes operations
 }
 ```
 
-There's no problem here, this code is easy to read and maintain - just a few self-evident arguments. But let's move onto Todo, where something like this might happen:
+One or two arguments is often considered ideal and three is pushing it. In this case, it's fine - the function is simple enough that the arguments won't cause confusion.
+
+But let's move onto Todo, where something like this might happen:
 
 ```javascript
 function renderTask(task, project, dueDate, priority, completion, info) {
@@ -111,20 +113,21 @@ renderTask(
 );
 ```
 
-There's few ways to make this a bit more comfortable. One is to assing the task as an object variable, like this:
+Now we are passing in all kinds of variables into this function and it's getting messy.
+
+There's few ways to make this a bit more comfortable. One option is to assing the task as an object variable, like this:
 
 ```javascript
 function renderTask(taskObject) {
   const taskName = document.createElement("div");
   taskName.innerText = taskObject.name;
-  parentContainer.appendChild(taskName);
   //more stuff that uses the other values from the object
 }
 ```
 
-Here we are only passing in the object and it's values or methods are accessed with dot notation. It looks a lot cleaner but there is a caveat - the reader has to look elsewhere to get a feel of what does `taskObject` contain. Depending on the codebase, this can be a long search.
+Here we are only passing in the object and it's values or methods are accessed with dot notation. It looks a lot cleaner but there is a caveat - the reader has to look elsewhere to get a feel of what does `taskObject` contain. In a todo app this won't likely be a problem - it'll be easy to find what variables this object is expected to have. But if we have a larger codebase, the search can actually take a good while.
 
-One possibility to add clarity is to rely on ES6 destructuring syntax:
+One way to make things immediately obvious is to use ES6 destructuring syntax:
 
 ```javascript
 function renderTask({
@@ -137,6 +140,12 @@ function renderTask({
 }) {
   // Code that creates the task in the DOM
 }
+```
+
+And we can now pass in an object with the same structure. Javascript allows you to create objects on the fly, so the object passed in doesn't necessarily have to exist before being passed in.
+
+```javascript
+// Here a object is created in the fly
 
 renderTask({
   task: "Do Groceries",
@@ -147,7 +156,64 @@ renderTask({
 });
 ```
 
-There's defineatly added clarity here, isn't there? The example also shows how using default values can save time when assigned to some properties.
+Or if you have a function that has created a `taskObject` from information gathered from a form field, you can just pass it in without explicitly destructuring it in your code. As long as the object has the same structure, your function will automatically destructure it.
+
+```javascript
+// Simply like this:
+
+renderTask(taskObject);
+```
+
+Did you also notice above how `completion` wasn't passed in at all? This is because it has a default value, which is set to be `false`. We are adding a todo item, so it makes sense that it will be incomplete when added, so we let the default value be used.
+
+### The value of reusability
+
+Most developers pride themselves on avoiding repetative tasks. Writing code once is hard enough. At their heart any function is a reusable piece of code but there's much more to this.
+
+One of the things you might have noticed with the Restaurant Page and Todo is that doing vanilla DOM manipulation can lead to a lot of repetition. So let's again use the Todo list as an example to illustrate how to avoid repetition.
+
+Here we see a simple DOM manipulation function that creates a task card.
+
+```javascript
+function createTaskCard(title, description) {
+  const taskCard = document.createElement("div");
+  taskCard.classList.add("task-card");
+
+  const titleElement = document.createElement("h3");
+  titleElement.textContent = title;
+
+  const descriptionElement = document.createElement("p");
+  descriptionElement.textContent = description;
+
+  taskCard.appendChild(titleElement);
+  taskCard.appendChild(descriptionElement);
+
+  document.getElementById("todo-list").appendChild(taskCard);
+}
+```
+
+We have three instances of `createElement` and a few `appendChild` methods. Nothing terrible but then again, this task card only displays a title and a description. With a more complex task card things are gonna get bloated real fast. Let's see what abstraction with a helper function can do for us here.
+
+```javascript
+function createTaskCard(title, description) {
+  const taskCard = document.createElement("div");
+  taskCard.classList.add("task-card");
+
+  appendElement({taskCard, "h3", title});
+  appendElement({taskCard, "p", description});
+
+  document.getElementById("todo-list").appendChild(taskCard);
+}
+
+// Helper function
+function appendElement({ parent, elementType, textContent }) {
+  const element = document.createElement(elementType);
+  element.textContent = textContent;
+  parent.appendChild(element);
+}
+```
+
+Isn't that much nicer? Our helper function is a very simple and for a real Todo you'd need something much more complex but even as it is, it has cleaned up our main function. And with some further development, it could be reused wherever you need to add any kind of DOM element.
 
 ### Assignment
 
