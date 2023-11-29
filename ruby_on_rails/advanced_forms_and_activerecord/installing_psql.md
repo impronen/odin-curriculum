@@ -174,7 +174,7 @@ brew update
 brew upgrade
 ~~~~
 
-If your terminal doesn't recognize `brew`, then you'll need to go and install homebrew. You can find it and other installs in the [installation appendix](https://www.theodinproject.com/lessons/installation_lessons).
+If your terminal doesn't recognize `brew`, then you'll need to go and install homebrew. You can find it and other installs in the [installation appendix](https://www.theodinproject.com/guides/installations).
 
 ### Step 2: Install the PostgreSQL packages
 Now that we've ensured our packages are up to date, we will use brew to install PostgreSQL.
@@ -335,9 +335,9 @@ Open your browser, and head on over to `localhost:3000`. If you are greeted by t
 
 This section contains questions for you to check your understanding of this lesson on your own. If you’re having trouble answering a question, click it and review the material it links to.
 
--   <a class="knowledge-check-link" href="#pipeline">What are the typical environments that make up a pipeline?</a>
--   <a class="knowledge-check-link" href="#env_var">What is an environment variable?</a>
--   <a class="knowledge-check-link" href="#privacy">Why should we use environment variables?</a>
+-   [What are the typical environments that make up a pipeline?](#pipeline)
+-   [What is an environment variable?](#env_var)
+-   [Why should we use environment variables?](#privacy)
 
 
 ### Additional resources

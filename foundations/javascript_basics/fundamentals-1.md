@@ -25,7 +25,7 @@ All JavaScript we will be writing in the majority of the Foundations course will
 
 The simplest way to get started is to simply create an HTML file with the JavaScript code inside of it.  Type the basic HTML skeleton into a file on your computer somewhere:
 
-~~~html
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +39,7 @@ The simplest way to get started is to simply create an HTML file with the JavaSc
   </script>
 </body>
 </html>
-~~~
+```
 
 Save and open this file up in a web browser (you can use ["Live Server" on Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) to do this!) and then <span id="access-devTools-console">open up the browser's console by right-clicking on the blank webpage and selecting "Inspect" or "Inspect Element".  In the 'Developer Tools' pane find and select the 'Console' tab</span>, where you should see the output of our `console.log` statement.
 
@@ -47,9 +47,9 @@ Save and open this file up in a web browser (you can use ["Live Server" on Visua
 
 Another way to include JavaScript in a webpage is through an external script. This is very similar to linking external CSS docs to your website.
 
-~~~html
+```html
   <script src="javascript.js"></script>
-~~~
+```
 
 JavaScript files have the extension `.js` similar to `.css` for stylesheets. External JavaScript files are used for more complex scripts.
 
@@ -88,9 +88,9 @@ Try the following exercises (and don't forget to use `console.log()`!):
     * Try the following in the console: `9 * a`
     * and this: `let b = 7 * a` (returns `undefined` \*) and then `console.log(b)`
 5. You should be getting the hang of this by now... try this sequence:
-    * Declare a constant variable `max` with the value `57`
-    * Set another variable `actual` to `max - 13`
-    * Set another variable `percentage` to `actual / max`
+    * Declare a constant variable `MAX` with the value `57`
+    * Set another variable `actual` to `MAX - 13`
+    * Set another variable `percentage` to `actual / MAX`
     * If you type `percentage` in the console and press <kbd>Enter</kbd> you should see a value like `0.7719`
 6. Take a few minutes to keep playing around with various things in your script tag.  Eventually, we will learn how to actually make those numbers and things show up on the webpage, but all of this logic will remain the same, so make sure you're comfortable with it before moving on.
 

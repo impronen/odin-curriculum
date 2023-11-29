@@ -121,7 +121,7 @@ There is a `render` shortcut that allows you to simply pass in variables without
 
 As usual, there are some things you would end up doing so many times that Rails has given you a shortcut.  One of these is the act of rendering a model object like a User or a Post.  If you want a list of all your users, you could write out the HTML and ERB code for displaying a single user's first name, last name, email etc. many times directly in your `app/views/users/index.html.erb` file or you could keep that code in some sort of `each` loop.  
 
-But it's usually best to make the User into its own partial called `_user.html.erb` so you can re-use it in other cases as well.  The basic way of calling this might be something just like we saw above, which looks like:
+But it's usually best to make the User into its own partial called `_user.html.erb` so you can reuse it in other cases as well.  The basic way of calling this might be something just like we saw above, which looks like:
 
 ~~~erb
   # app/views/index.html.erb
@@ -236,9 +236,9 @@ This section contains helpful links to other content. It isn't required, so cons
 ### Knowledge check
 This section contains questions for you to check your understanding of this lesson. If you’re having trouble answering the questions below on your own, review the material above to find the answer.
 
-* <a class="knowledge-check-link" href="#how-do-preprocessors-work">How do you make sure a preprocessor runs on your view file?</a>
-* <a class="knowledge-check-link" href="#preprocessors">What is the difference between `<%`, `<%=` and `<%#`? </a>
-* <a class="knowledge-check-link" href="https://guides.rubyonrails.org/layouts_and_rendering.html#understanding-yield">What does including `<%= yield %>` in a layout do?</a>
-* <a class="knowledge-check-link" href="https://guides.rubyonrails.org/layouts_and_rendering.html#using-partials">Why do we use partials?</a>
-* <a class="knowledge-check-link" href="https://guides.rubyonrails.org/layouts_and_rendering.html#rendering-collections">What is the shortcut for rendering a collection as a series of partials?</a>
-* <a class="knowledge-check-link" href="#linkto">How do you dynamically link to another page of your Rails app?</a>
+* [How do you make sure a preprocessor runs on your view file?](#how-do-preprocessors-work)
+* [What is the difference between `<%`, `<%=` and `<%#`?](#preprocessors)
+* [What does including `<%= yield %>` in a layout do?](https://guides.rubyonrails.org/layouts_and_rendering.html#understanding-yield)
+* [Why do we use partials?](https://guides.rubyonrails.org/layouts_and_rendering.html#using-partials)
+* [What is the shortcut for rendering a collection as a series of partials?](https://guides.rubyonrails.org/layouts_and_rendering.html#rendering-collections)
+* [How do you dynamically link to another page of your Rails app?](#linkto)
