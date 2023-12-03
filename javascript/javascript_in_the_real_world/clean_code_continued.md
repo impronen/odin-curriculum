@@ -10,10 +10,10 @@ Sound good? Let's go!
 
 This section contains a general overview of topics that you will learn in this lesson.
 
-- Find out more ways to improve your code readability.
-- Understand why re-usability is golden.
-- What it means to write DRY code?
-- Brevity vs. readability.
+- How to apply SRP to functions
+- Why and how to limit number of arguments in functions
+- Understand the value of reusability
+- Explore the balance between brevity and readability
 
 ### Back To Functions
 
@@ -23,7 +23,7 @@ We have just discussed one of the most important principles in an earlier lesson
 
 #### Have your functions do only one thing
 
-A function that does one thing will be easier to read than one that does many things. This will not only make your code more readable but it will make it easier to refactor. Let's look at an example:
+A function that does one thing will be easier to read than one that does many things. This will not only make your code more readable but it will make it easier to refactor, to add new features and maintain. Let's look at an example:
 
 ```javascript
 function processUserData(user) {
@@ -36,16 +36,16 @@ function processUserData(user) {
 }
 ```
 
-This function is doing some heavy lifting. If we break it down, it undertakes the following tasks:
+This function is responsible for the following tasks:
 
 1. Validates user data.
 2. Saves user data to the database.
 3. Sends a welcome email to the user.
 4. Logs user activity.
 
-Our poor function is burdened with all kinds of responsibilities. While the code isn't hard to read, violating SRP can make life difficult when fixing bugs down the line.
+Our poor function is just absolutely burdened. While the code isn't hard to read, violating SRP can make life difficult when fixing bugs down the line.
 
-Let's imagine that there will be a bug in step two, where the user data is added to a database. Will your first instinct to be to look at the function named `processUserData`? Probably not, it's not referring to saving the user to the database but as our function has so many responsibilities, it might be where the problem lies.
+Let's imagine that there will be a bug in step two, where the user data is added to a database. Will your first instinct to be to look at the function named `processUserData`? Probably not, it's not referring to saving the user to the database but as our function has so many responsibilities, the problem might be there.
 
 So how would we align this function to respect the SRP? By dividing it to smaller functions, something like this:
 
@@ -81,8 +81,6 @@ function addUser(userData) {
 ```
 
 Now we can safely do changes to each of the steps needed for the process of adding a user. Many of these functions could also come in handy in other parts of the application, if needed. Any errors encountered will specifically pinpoint the related function. Convenient, modular and reusable.
-
-<!-- NEXT WORK ON FUNCTION ARGUMENTS -->
 
 #### Limit the number of arguments passed to a function
 
@@ -192,7 +190,9 @@ function createTaskCard(title, description) {
 }
 ```
 
-We have three instances of `createElement` and a few `appendChild` methods. Nothing terrible but then again, this task card only displays a title and a description. With a more complex task card things are gonna get bloated real fast. Let's see what abstraction with a helper function can do for us here.
+We have three instances of `createElement` and a few `appendChild` methods. Nothing terrible but then again, this task card only displays a title and a description. With a more complex task card this function will balloon real fast. You might end up with rows of just `createElement`, `textContent` and `appendChild` operations.
+
+Abstraction can help us to keep this function focused on the high-level logic. One way to achieve this is the use of helper functions, like this:
 
 ```javascript
 function createTaskCard(title, description) {
@@ -213,7 +213,16 @@ function appendElement({ parent, elementType, textContent }) {
 }
 ```
 
-Isn't that much nicer? Our helper function is a very simple and for a real Todo you'd need something much more complex but even as it is, it has cleaned up our main function. And with some further development, it could be reused wherever you need to add any kind of DOM element.
+Isn't that much nicer? We only need one case of adding `textContent` in the helper and just one `appendChild`. We also have nice little separation of concerns here - the main function delegates the creation of it's children to the helper, which are created with a clear interface of passing in destructured objects. 
+
+Our helper function is is of course very simple and for a real Todo you'd need something that does a bit more. But is should illustrate the point nicely.
+
+A word of warning is in place: There is such a thing as too much abstraction. Having several levels of abstraction can make code hard to read, as anyone reading it needs to trace the chain of abstractions to understand what is happening.
+
+
+### Brevity versus readability
+
+
 
 ### Assignment
 
