@@ -213,16 +213,51 @@ function appendElement({ parent, elementType, textContent }) {
 }
 ```
 
-Isn't that much nicer? We only need one case of adding `textContent` in the helper and just one `appendChild`. We also have nice little separation of concerns here - the main function delegates the creation of it's children to the helper, which are created with a clear interface of passing in destructured objects. 
+Isn't that much nicer? We only need one case of adding `textContent` in the helper and just one `appendChild`. We also have nice little separation of concerns here - the main function delegates the creation of it's children to the helper, which are created with a clear interface of passing in destructured objects.
 
 Our helper function is is of course very simple and for a real Todo you'd need something that does a bit more. But is should illustrate the point nicely.
 
 A word of warning is in place: There is such a thing as too much abstraction. Having several levels of abstraction can make code hard to read, as anyone reading it needs to trace the chain of abstractions to understand what is happening.
 
-
 ### Brevity versus readability
 
+We are getting back to controversial territories. Other coders appreciate code that is terse and brief, while others find a more verbose approach to be more readable.
 
+While there are more than enough of hot takes on this, most developers agree that _excessive_ brevity will make code harder to read.
+
+A classic example is the case of if statements versus ternary operators. Ternaries are pretty sweet - being able to make a conditional with one line feels good. And maybe if statements can _feel_ a bit basic.
+
+But for many, ternaries can be hard to grok, especially if there are more than one condition. Let's illustrate by comparison:
+
+```javascript
+function determineSportsEligibility(age, hasMedicalCondition) {
+  return age >= 18
+    ? !hasMedicalCondition
+      ? "You are eligible for all sports."
+      : "You are eligible for non-contact sports only."
+    : "You are not eligible for any sports.";
+}
+```
+
+The code above does the same as this, slightly longer piece:
+
+```javascript
+function determineSportsEligibility(age, hasMedicalCondition) {
+  if (age >= 18) {
+    if (!hasMedicalCondition) {
+      return "You are eligible for all sports.";
+    } else {
+      return "You are eligible for non-contact sports only.";
+    }
+  } else {
+    return "You are not eligible for any sports.";
+  }
+}
+```
+
+You probably can understand both but it is likely that the latter is much more immediately understandable. We have two factors that determine whether a person is eligible for sports - age and a health condition. To handle three possible outcomes, the ternary needs to be nested. The nested if statement is longer but the structure of an if statement makes it straigthforward to read.
+
+We are not going to give you hard set rules on this, as we aknowledge that this issue is also a matter of taste. And it might be that in your future job, your team will have an established conventions and style guides in place - in those cases, the correct choice is to writ code that aligns to those rules.
 
 ### Assignment
 
